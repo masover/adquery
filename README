@@ -22,7 +22,7 @@ However, be aware that there is currently NO UI -- you'll have to create rules y
 
 
 ===========
-| FILTERS |
+| Filters |
 ===========
 
 Filters are simply documents that look like this:
@@ -48,7 +48,7 @@ This means you can use any jQuery expression to filter ads.
 
 
 ============
-| EXAMPLES |
+| Examples |
 ============
 
 I don't have URL-based filters yet, but I can fake it for the worst domains. None of these domains can load flash, or any other plugin, on my browser:

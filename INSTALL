@@ -1,0 +1,22 @@
+If you're not at least a programmer, you probably don't want to do this yet.
+
+First, install CouchDB 0.9.1.
+
+Next, SET UP A COUCHDB ADMIN PASSWORD. To do this, find your local.ini file (/etc/couchdb for Linux users) -- you probably want these two lines at the bottom:
+
+[admins]
+admin = mysecretpassword
+
+Don't worry too much -- CouchDB will actually go back and edit this file to hash the password for you when it restarts.
+
+Next, go to http://localhost:5984/_utils. Login with your new password when prompted. Chrome doesn't seem to want to save the password right now -- oh well.
+
+Create a database called 'adquery'. You may want to create some documents, to test.
+
+Click "temporary view". In the "map" area, paste the contents of couch_design/queries_by_domain.js. Run it to verify that it works (you should see each domain as a key, and a list of queries as a value), then save it in the design document "queries", as the view "queries_by_domain".
+
+Download a developer or nightly build of Chrome or Chromium.
+
+Edit your Chrome shortcut and add these options: --enable-extensions --load-extension=/path/to/adquery/extension
+
+I promise, I'll make a crx later -- but right now, it doesn't make a lot of sense. Why make it so easy to install the Chrome extension, when you still need CouchDB locally? The easiest way to improve it is to wait for html5 databases, then either switch to sqlite wholesale or have it be able to sync with (or at least cache from) CouchDB.
