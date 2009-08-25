@@ -1,0 +1,92 @@
+This is an incredibly simple ad blocker for Chromium / Google Chrome, based on jQuery and CouchDB.
+
+
+==============
+| Motivation |
+==============
+
+CouchDB because the HTML5 "database" API wasn't ready yet, and it was the easiest to connect to. Also because my filter rules aren't exactly secret.
+
+Adblockers for Firefox are generally either too little (URL-based filering only), or too much (comes preset with every ad system known to man), usually both.
+
+I don't mind ads. I realize they are how many "free" services make their money, and occasionally I see something interesting.
+
+However, I hate ads that move. They're distracting. They slow me down, and if they're Flash-based, they slow my browser down, too. I don't mind them being interactive, or even video-based, so long as they sit still until I click on them.
+
+It might seem that Flashblock or Noscript would be ideal, but I like scripts, interactivity, and even some Flash-based sites. Also, whitelists suck, and none of those exist for Chrome yet.
+
+The plan is to ultimately make it simpler than Adblock for creating new rules. I'd much rather have to create rules when I see ads, than find I'm missing something cool because I blocked too zealously.
+
+However, be aware that there is currently NO UI -- you'll have to create rules yourself in Futon or something (http://localhost:5984/_utils).
+
+
+
+===========
+| FILTERS |
+===========
+
+Filters are simply documents that look like this:
+
+{
+  "domain": "example.com",
+  "query": "#ad-frame"
+}
+
+You can pluralize "domain" or "query", and they'll take an array:
+
+{
+  "domains": ["doubleclick.net", "2mdn.net"],
+  "queries": ["object", "#ad-frame"]
+}
+
+Each "query" is a jQuery expression which is applied to every page on a given domain, and all subdomains. It essentially boils down to something like this:
+
+$('#ad-frame').remove();
+
+This means you can use any jQuery expression to filter ads.
+
+
+
+============
+| EXAMPLES |
+============
+
+I don't have URL-based filters yet, but I can fake it for the worst domains. None of these domains can load flash, or any other plugin, on my browser:
+
+{
+  "domains": [
+    "doubleclick.net",
+    "adlegend.com",
+    "2mdn.net",
+    "atdmt.com"
+  ],
+  "query": "object"
+}
+
+Some trickier queries for a specific domain -- the kind of query I'd like to automate later:
+
+{
+  "domain": "ctrlaltdel-online.com",
+  "queries": [
+    "embed[id=Advertisement]",      // but this only seems to get the top one
+    "object[width=160][height=600]" // any Flash of this size
+  ]
+}
+
+I know exactly where this ad appears, and it annoys the hell out of me. But I kind of like the Project Wonderful ads:
+
+{
+  "domain": "questionablecontent.net",
+  "query": "#side img:first"
+}
+
+PVP is nice enough to wrap everything in convenient IDs:
+
+{
+  "domain: "pvponline.com",
+  "queries": [
+    "#ad-leader",
+    "#ad-tower",
+    "#FLASH_AD"
+  ]
+}
