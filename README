@@ -17,7 +17,7 @@ It might seem that Flashblock or Noscript would be ideal, but I like scripts, in
 
 The plan is to ultimately make it simpler than Adblock for creating new rules. I'd much rather have to create rules when I see ads, than find I'm missing something cool because I blocked too zealously.
 
-However, be aware that there is currently NO UI -- you'll have to create rules yourself in Futon or something (http://localhost:5984/_utils).
+However, be aware that there is currently NO UI -- you'll have to create rules yourself in Futon: http://localhost:5984/_utils
 
 
 
