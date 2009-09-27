@@ -4,7 +4,6 @@ function remove(rows) {
       $(this.value[i]).remove();
     }
   });
-  $(query).remove();
 }
 
 var pending = [];
