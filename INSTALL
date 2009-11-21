@@ -1,6 +1,6 @@
 If you're not at least a programmer, you probably don't want to do this yet.
 
-First, install CouchDB 0.9.1.
+First, install CouchDB 0.9.1 or greater. (It works well with 0.10.0, the default on Ubuntu Karmic.)
 
 Next, SET UP A COUCHDB ADMIN PASSWORD. To do this, find your local.ini file (/etc/couchdb for Linux users) -- you probably want these two lines at the bottom:
 
